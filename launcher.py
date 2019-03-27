@@ -32,7 +32,7 @@ train_loader = torch.utils.data.DataLoader(
                    transform=transforms.ToTensor()),
     batch_size=args.batch_size, shuffle=True, **kwargs)
 test_loader = torch.utils.data.DataLoader(
-    datasets.FashionMNIST('Fashion-MNIST/processed/test.pt', train=False, transform=transforms.ToTensor()),
+    datasets.FashionMNIST('Fashion-MNIST/processed/test.pt', train=False, download=True, transform=transforms.ToTensor()),
     batch_size=args.batch_size, shuffle=True, **kwargs)
 
 
@@ -129,4 +129,5 @@ for epoch in range(1, args.epochs + 1):
         sample = model.decode(sample).cpu()
         save_image(sample.view(64, 1, 28, 28), 'results/sample_' + str(epoch) + '.png')
 
-torch.save(model)
+torch.save(model,"/usr/prakt/w0178/Documents/LMUP/model/vae.model")
+
